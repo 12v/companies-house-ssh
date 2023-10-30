@@ -30,6 +30,9 @@ Yes, OpenSSH won't get as far as attempting to use a public key if the correspon
 ### Is there a client-side environment issue preventing this from working?
 Perhaps... but this result is consistent with what's seen in other environments/ISPs/OSs/etc.
 
+### Why are you configuring the private key, not the public key?
+The public key is derived from the private key.
+
 
 ## Security
 
