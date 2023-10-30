@@ -32,16 +32,14 @@ jobs:
       
       - name: Add SSH key
         run: |
-            echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/github_actions
-            chmod 600 ~/.ssh/github_actions
+            echo "${{ secrets.PRIVATE_KEY }}" > ~/.ssh/private_key
+            chmod 600 ~/.ssh/private_key
 
-      - name: Calculate SHA256 of USERNAME and HOSTNAME secrets to allow verification
+      - name: Calculate SHA256 of <username>@<hostname> secrets to allow verification
         run: |
-            echo "This is the sha256 for the username, verify by running <echo -n \"xyz\" | shasum -a 256> locally"
-            echo -n "${{ secrets.USERNAME }}" | shasum -a 256
-            echo "This is the sha256 for the hostname, verify by running <echo -n \"xyz\" | shasum -a 256> locally"
-            echo -n "${{ secrets.HOSTNAME }}" | shasum -a 256
+            echo "This is the sha256 for <username>@<hostname>, verify by running \`echo -n \"<username>@<hostname>\" | shasum -a 256\` locally"
+            echo -n "${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}" | shasum -a 256
 
       - name: Attempt SFTP connection
         run: |
-          sftp -v -v -v -oBatchMode=yes -i ~/.ssh/github_actions ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
+          sftp -v -v -v -oBatchMode=yes -i ~/.ssh/private_key ${{ secrets.USERNAME }}@${{ secrets.HOSTNAME }}
