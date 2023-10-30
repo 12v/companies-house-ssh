@@ -8,10 +8,10 @@ This project tests (publicly!) whether a public key is configured correctly for 
 ## Results
 
 From the latest results [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015), you can see that:
- * The SHA256 of `<username>@<hostname>` is `1c0622b93f9569f314556aab2e373ff4f1314cb3de58f2c74a44bb077cd72594` (from [here](https://github.com/12v/ssh-test/actions/runs/6697895397/job/18198747787#step:5:9))
+ * The SHA256 of `<username>@<hostname>` is `1c0622b93f9569f314556aab2e373ff4f1314cb3de58f2c74a44bb077cd72594` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:5:7))
  * The SHA256 of the server's public key is `zLWu0B78gJqq315/f38HVSYoMUOv1utlqDQ0PZsfAFo` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:6:67))
  * The SHA256 of the client's public key is `y7sR7uUSfW9yy4riD8MpRdiFwXADSutMrk3o0M13t48` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:6:102))
- * The client can reach the server, but the server responds to the public key with `packet: type 51` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:6:106))
+ * The client can reach the server, but the server responds to the public key with `packet: type 51` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:6:93))
 
 Packet type 51 corresponds to a `SSH_MSG_USERAUTH_FAILURE` response (defined [here](https://www.ietf.org/rfc/rfc4252.txt)), indicating that the server is rejecting the public key as not valid for the requested user.
 
@@ -50,4 +50,4 @@ Nonetheless, the username and hostname we are using can be validated by comparin
 
 `echo -n "<username>@<hostname>" | shasum -a 256`
 
-If we are using the username and hostname that you have in mind, the SHA256 should be `1c0622b93f9569f314556aab2e373ff4f1314cb3de58f2c74a44bb077cd72594` (from [here](https://github.com/12v/ssh-test/actions/runs/6697895397/job/18198747787#step:5:9)).
+If we are using the username and hostname that you have in mind, the SHA256 should be `1c0622b93f9569f314556aab2e373ff4f1314cb3de58f2c74a44bb077cd72594` (from [here](https://github.com/12v/ssh-test/actions/runs/6698604225/job/18201041015#step:5:7)).
